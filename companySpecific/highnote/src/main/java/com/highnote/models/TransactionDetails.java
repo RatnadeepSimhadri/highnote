@@ -1,7 +1,9 @@
 package com.highnote.models;
 
+import java.util.*;
 
 public class TransactionDetails {
+    private String originalMessage;
     private ISOMessageDataElement cardNumber;
     private ISOMessageDataElement expirationDate;
     private ISOMessageDataElement amount;
@@ -9,6 +11,23 @@ public class TransactionDetails {
     private ISOMessageDataElement cardHolderName;
     private ISOMessageDataElement zipCode;
 
+
+    public TransactionDetails(String ISOMessage){
+        this.originalMessage = ISOMessage;
+    }
+    /**
+     * @param originalMessage the originalMessage to set
+     */
+    public void setOriginalMessage(String originalMessage) {
+        this.originalMessage = originalMessage;
+    }
+
+    /**
+     * @return the originalMessage
+     */
+    public String getOriginalMessage() {
+        return originalMessage;
+    }
     /**
      * @return the amount
      */
@@ -77,6 +96,10 @@ public class TransactionDetails {
             setExpirationDate(element);
         } else if (element instanceof TransactionAmount){
             setAmount(element);
+        } else if (element instanceof CardHolderName){
+            setCardHolderName(element);
+        } else if (element instanceof ZipCode){
+            setZipCode(element);
         }
     }
 
@@ -93,8 +116,61 @@ public class TransactionDetails {
     public ISOMessageDataElement getResponseCode() {
         return responseCode;
     }
-
+   
     public String toString(){
-        return cardNumber.toString() + " " + expirationDate.toString();
+        StringBuilder sb = new StringBuilder();
+        if(cardNumber != null){
+            sb.append(cardNumber.toString() + " ");
+        }
+        if(expirationDate != null){
+            sb.append(expirationDate.toString() + " ");
+        }
+        if(amount != null){
+            sb.append(amount.toString() + " ");
+        }
+        if(responseCode != null){
+            sb.append(responseCode.toString() + " ");
+        }
+        if(cardHolderName != null){
+            sb.append(cardHolderName.toString() + " ");
+        }
+        if(zipCode != null){
+            sb.append(zipCode.toString() + " ");
+        }
+
+        return sb.toString();
     }
+
+    public char[] generateResponseBitmap(){
+        char[] bitmap = new char[8];
+        Arrays.fill(bitmap,'0');
+        if(cardNumber != null){
+            bitmap[0] = '1';
+        }
+        if(expirationDate != null){
+            bitmap[1] = '1';
+        }
+        if(amount != null){
+            bitmap[2] = '1';
+        }
+        if(responseCode != null){
+            bitmap[3] = '1';
+        }
+        if(cardHolderName != null){
+            bitmap[4] = '1';
+        }
+        if(zipCode != null){
+            bitmap[5] = '1';
+        }
+
+        return bitmap;
+    }
+
+    /**
+     * Validates the Transaction based on the Transaction Details captured
+     */
+    public void validateTransaction(){
+
+    }
+    
 }

@@ -1,35 +1,37 @@
 package com.highnote.models;
 
-import java.time.*;
 
 public class ExpiryDate implements ISOMessageDataElement {
     public static Integer DATALENGTH = 4;
-    private LocalDateTime expiryDate;
-
-    public ExpiryDate(String MMYY){
-        this.expiryDate = LocalDateTime.now();
-    }
-    /**
-     * @param expiryDate the expiryDate to set
-     */
-    public void setExpiryDate(LocalDateTime expiryDate) {
-        this.expiryDate = expiryDate;
-    }
-    /**
-     * @return the expiryDate
-     */
-    public LocalDateTime getExpiryDate() {
-        return expiryDate;
-    }
+    private Integer expiryMonth;
+    private Integer expiryYear;
 
     @Override
     public int getNextOffset() {
-       
         return DATALENGTH;
     }
 
+    /**
+     * @param expiryMonth the expiryMonth to set
+     */
+    public void setExpiryMonth(Integer expiryMonth) {
+        this.expiryMonth = expiryMonth;
+    }
+
+    /**
+     * @param expiryYear the expiryYear to set
+     */
+    public void setExpiryYear(Integer expiryYear) {
+        this.expiryYear = expiryYear;
+    }
+
+    public ExpiryDate(String MM , String YY){
+        this.expiryMonth = Integer.valueOf(MM);
+        this.expiryYear = Integer.valueOf("20"+YY);
+    }
+
     public String toString(){
-        return this.expiryDate.toString();
+        return (expiryMonth.toString() + expiryYear.toString());
     }
     
 }

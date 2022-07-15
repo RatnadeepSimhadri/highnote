@@ -1,7 +1,9 @@
 package com.highnote;
 
+
 import com.highnote.service.ParserService;
 import com.highnote.service.UtilService;
+
 /**
  * Hello world!
  */
@@ -18,8 +20,11 @@ public class Highnote {
     
 
     public static void main(String[] args) {
-        String ISOString = "0100e016411111111111111112250000001000";
-        int[] bitmap = UtilService.generateBitmap(ISOString);
-        System.out.println(ParserService.parseISOMessage(ISOString,bitmap));
+       
+        String ISOMessage = "0100ec1651051051051051001225000001100011MASTER YODA90089";
+        char[] bitmap = UtilService.generateBitmap(ISOMessage.substring(0,6));
+        String transactionDetails = ParserService.parseISOMessage(ISOMessage, bitmap);
+        System.out.println(transactionDetails);
+       
     }
 }

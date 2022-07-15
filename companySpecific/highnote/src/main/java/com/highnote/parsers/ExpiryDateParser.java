@@ -7,7 +7,8 @@ public class ExpiryDateParser implements IParser {
 
     @Override
     public ISOMessageDataElement parse(String message, int startIndex) { 
-        return new ExpiryDate(message.substring(startIndex,(startIndex+ExpiryDate.DATALENGTH)));
+        String MMYY = message.substring(startIndex,(startIndex+ExpiryDate.DATALENGTH));
+        return new ExpiryDate(MMYY.substring(0,2),MMYY.substring(2,4));
     }
     
 }
