@@ -14,7 +14,7 @@ import com.highnote.parsers.ZipCodeParser;
 public class ParserService {
     public static String parseISOMessage(String ISOMessage , char[] bitmap){
         String ISOMessageData = ISOMessage.substring(6);
-        TransactionDetails td = new TransactionDetails();
+        TransactionDetails td = new TransactionDetails(ISOMessage);
         Map<Integer,IParser> parserMap = new HashMap<>();
         parserMap.put(0,new CardNumberParser());
         parserMap.put(1, new ExpiryDateParser());
