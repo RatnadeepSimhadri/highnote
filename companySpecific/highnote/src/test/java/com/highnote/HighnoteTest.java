@@ -1,14 +1,21 @@
 package com.highnote;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+
+import java.util.*;
 
 /**
  * Unit test for simple App.
  */
 class HighnoteTest {
-    Highnote instance = new Highnote();
-
+    Highnote instance;
+    @BeforeEach
+    public void beforeEach(){
+        instance = new Highnote();
+    }
     @Test
     public void processTransactionsShouldReturnValidResponse() {
         String[] transactions = {
@@ -105,6 +112,29 @@ class HighnoteTest {
 
         String[] expected = {
                 "0110fc16510510510510510012250000021000DE11MASTER YODA90089"
+        };
+        String[] actual = instance.processTransactions(transactions);
+        assertArrayEquals(expected, actual , "processTransactions returns appropriate reponse");
+    }
+
+
+    @Test
+    public void processTransactionsCheckBalance() {
+        Map<String,Long> accounts = new HashMap<>();
+        instance = new Highnote(accounts, 10000l);
+        accounts.put("4111111111111111", 20000l);
+
+
+        String[] transactions = {
+                "0100e016411111111111111112250000009000",
+                "0100e016411111111111111112250000009000",
+                "0100e016411111111111111112250000009000",
+        };
+
+        String[] expected = {
+                "0110f016411111111111111112250000009000OK",
+                "0110f016411111111111111112250000009000OK",
+                "0110f016411111111111111112250000009000DE",
         };
         String[] actual = instance.processTransactions(transactions);
         assertArrayEquals(expected, actual , "processTransactions returns appropriate reponse");

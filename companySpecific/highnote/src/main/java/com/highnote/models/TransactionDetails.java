@@ -176,6 +176,7 @@ public class TransactionDetails {
         TransactionAmount tAmount = (TransactionAmount) this.amount;
         ExpiryDate tDate = (ExpiryDate) this.expirationDate;
         LocalDate today = LocalDate.now();
+        CardNumber card = (CardNumber) this.cardNumber;
         if(this.cardNumber == null || this.expirationDate == null || this.amount == null){
             tResponse = new ResponseCode("ER");
             this.setResponseCode(tResponse);
@@ -186,10 +187,14 @@ public class TransactionDetails {
         if(tZipCode == null){
             if(tAmount.getAmount() >= 10000){
                 tResponse.setResponseCode("DE");
+                this.setResponseCode(tResponse);
+                return;
             } 
         } else {
             if(tAmount.getAmount() >= 20000){
                 tResponse.setResponseCode("DE");
+                this.setResponseCode(tResponse);
+                return;
             }
         }
 
@@ -198,11 +203,28 @@ public class TransactionDetails {
 
         if(tDate.getExpiryYear() < currentYear){
             tResponse.setResponseCode("DE");
+            this.setResponseCode(tResponse);
+            return;
         } else if (tDate.getExpiryYear() == currentYear && tDate.getExpiryMonth() < currentMonth){
             tResponse.setResponseCode("DE");
+            this.setResponseCode(tResponse);
+            return;
         }
 
-        this.responseCode = tResponse;
+        Accounts accounts = Accounts.getAccountsInstance();
+        Long outstandingBalance = accounts.getBalance(card.getCardNumber());
+        if(tAmount.getAmount() <= outstandingBalance){
+            tResponse.setResponseCode("OK");
+            this.setResponseCode(tResponse);
+            outstandingBalance = outstandingBalance - tAmount.getAmount();
+            accounts.updateBalance(card.getCardNumber(), outstandingBalance);
+            return;
+        } else {
+            tResponse.setResponseCode("DE");
+            this.setResponseCode(tResponse);
+            return;
+        }
+
     }
     
 }

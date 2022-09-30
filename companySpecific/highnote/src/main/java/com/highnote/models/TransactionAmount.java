@@ -3,22 +3,22 @@ import org.apache.commons.lang3.StringUtils;
 public class TransactionAmount implements ISOMessageDataElement {
     public static Integer DATALENGTH = 10;
     
-    private Double amount;
+    private Long amount;
 
     public TransactionAmount(String amount){
-        this.amount = Double.valueOf(amount);
+        this.amount = Long.valueOf(amount);
     }
     /**
      * @return the amount
      */
-    public Double getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
     /**
      * @param amount the amount to set
      */
-    public void setAmount(Double amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
     @Override
