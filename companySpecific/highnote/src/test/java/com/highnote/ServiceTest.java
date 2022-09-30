@@ -60,4 +60,27 @@ public class ServiceTest {
 
     }
 
+    @Test
+    public void validateGenerateCoreMessageForError(){
+        TransactionDetails td = new TransactionDetails("");
+        td.setOriginalMessage("0100e016411111111111111112250000001000");
+        td.populateData(new CardNumber("4111111111111111"));
+        td.validateTransaction();
+        String responseMessage = ParserService.generateCoreMessage(td);
+        assertEquals("164111111111111111ER",responseMessage);
+      
+
+    }
+
+    @Test
+    public void validateGenerateCoreMessageForErrorMissingNumber(){
+        TransactionDetails td = new TransactionDetails("");
+        td.setOriginalMessage("0100e016411111111111111112250000001000");
+        td.validateTransaction();
+        String responseMessage = ParserService.generateCoreMessage(td);
+        assertEquals("ER",responseMessage);
+      
+
+    }
+
 }

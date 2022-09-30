@@ -96,4 +96,17 @@ class HighnoteTest {
         String[] actual = instance.processTransactions(transactions);
         assertArrayEquals(expected, actual , "processTransactions returns appropriate reponse");
     }
+
+    @Test
+    public void processTransactionsHighAmountValue() {
+        String[] transactions = {
+                "0100ec1651051051051051001225000002100011MASTER YODA90089"
+        };
+
+        String[] expected = {
+                "0110fc16510510510510510012250000021000DE11MASTER YODA90089"
+        };
+        String[] actual = instance.processTransactions(transactions);
+        assertArrayEquals(expected, actual , "processTransactions returns appropriate reponse");
+    }
 }

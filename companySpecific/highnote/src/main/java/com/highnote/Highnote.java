@@ -30,12 +30,12 @@ public class Highnote {
      */
     
 
-    public static void main(String[] args) {
+    // public static void main(String[] args) {
        
-        String ISOMessage = "0100ec1651051051051051001225000001100011MASTER YODA90089";
-        char[] bitmap = UtilService.generateBitmap(ISOMessage.substring(0,6));
-        TransactionDetails transactionDetails = ParserService.parseISOMessage(ISOMessage, bitmap);
-        System.out.println(transactionDetails.toString());
+    //     String ISOMessage = "0100ec1651051051051051001225000001100011MASTER YODA90089";
+    //     char[] bitmap = UtilService.generateBitmap(ISOMessage.substring(0,6));
+    //     TransactionDetails transactionDetails = ParserService.parseISOMessage(ISOMessage, bitmap);
+    //     System.out.println(transactionDetails.toString());
        
-    }
+    // }
 }
