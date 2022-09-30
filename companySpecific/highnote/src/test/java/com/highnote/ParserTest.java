@@ -32,14 +32,14 @@ public class ParserTest {
     public void validateExpiryDateParser(){
         IParser instance = new ExpiryDateParser();
         ISOMessageDataElement actual = instance.parse("1223", 0);
-        assertEquals("122023",actual.toString());
+        assertEquals("1223",actual.toString());
     }
 
     @Test
     public void validateTransactionAmountParser(){
         IParser instance = new TransactionAmountParser();
         ISOMessageDataElement actual = instance.parse("0000001000", 0);
-        assertEquals("1000.0",actual.toString());
+        assertEquals("0000001000",actual.toString());
     }
 
     @Test

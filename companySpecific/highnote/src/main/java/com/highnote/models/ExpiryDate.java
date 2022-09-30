@@ -2,6 +2,7 @@ package com.highnote.models;
 
 
 public class ExpiryDate implements ISOMessageDataElement {
+    public static Integer MILLENNIUM = 2;
     public static Integer DATALENGTH = 4;
     private Integer expiryMonth;
     private Integer expiryYear;
@@ -27,7 +28,7 @@ public class ExpiryDate implements ISOMessageDataElement {
 
     public ExpiryDate(String MM , String YY){
         this.expiryMonth = Integer.valueOf(MM);
-        this.expiryYear = Integer.valueOf("20"+YY);
+        this.expiryYear = (MILLENNIUM * 1000) + Integer.valueOf(YY);
     }
 
     public String toString(){
