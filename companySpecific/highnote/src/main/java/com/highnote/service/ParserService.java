@@ -2,11 +2,7 @@ package com.highnote.service;
 
 import java.util.*;
 
-import com.highnote.models.CardHolderName;
-import com.highnote.models.CardNumber;
-import com.highnote.models.ExpiryDate;
 import com.highnote.models.ISOMessageDataElement;
-import com.highnote.models.TransactionAmount;
 import com.highnote.models.TransactionDetails;
 import com.highnote.parsers.CardNameParser;
 import com.highnote.parsers.CardNumberParser;

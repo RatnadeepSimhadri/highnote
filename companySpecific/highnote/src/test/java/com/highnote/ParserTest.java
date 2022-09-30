@@ -3,7 +3,6 @@ package com.highnote;
 import org.junit.jupiter.api.Test;
 
 import com.highnote.models.ISOMessageDataElement;
-import com.highnote.models.TransactionDetails;
 import com.highnote.parsers.CardNameParser;
 import com.highnote.parsers.CardNumberParser;
 import com.highnote.parsers.ExpiryDateParser;
