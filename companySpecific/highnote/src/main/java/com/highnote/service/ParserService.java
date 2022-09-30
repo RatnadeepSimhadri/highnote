@@ -37,6 +37,11 @@ public class ParserService {
         return td;
     }
 
+    /**
+     * THis Method Generates the Return ISO Message 
+     * @param td
+     * @return
+     */
     public static String generateResponseISOMessage(TransactionDetails td){
         StringBuilder res = new StringBuilder();
         res.append("0110");
@@ -49,7 +54,12 @@ public class ParserService {
         return res.toString();
     }
 
-    private static String generateCoreMessage(TransactionDetails td){
+    /**
+     * This Method Takes in TransactionDetails Model and Constructs the Core Data Message
+     * @param td
+     * @return
+     */
+    public static String generateCoreMessage(TransactionDetails td){
         StringBuilder sb = new StringBuilder();
         if(td.getCardNumber() != null){
             
