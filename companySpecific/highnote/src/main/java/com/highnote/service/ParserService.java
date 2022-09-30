@@ -2,7 +2,11 @@ package com.highnote.service;
 
 import java.util.*;
 
+import com.highnote.models.CardHolderName;
+import com.highnote.models.CardNumber;
+import com.highnote.models.ExpiryDate;
 import com.highnote.models.ISOMessageDataElement;
+import com.highnote.models.TransactionAmount;
 import com.highnote.models.TransactionDetails;
 import com.highnote.parsers.CardNameParser;
 import com.highnote.parsers.CardNumberParser;
@@ -12,7 +16,7 @@ import com.highnote.parsers.TransactionAmountParser;
 import com.highnote.parsers.ZipCodeParser;
 
 public class ParserService {
-    public static String parseISOMessage(String ISOMessage , char[] bitmap){
+    public static TransactionDetails parseISOMessage(String ISOMessage , char[] bitmap){
         String ISOMessageData = ISOMessage.substring(6);
         TransactionDetails td = new TransactionDetails(ISOMessage);
         Map<Integer,IParser> parserMap = new HashMap<>();
@@ -30,13 +34,47 @@ public class ParserService {
             }
         }
 
-        return td.toString();
+        return td;
     }
 
     public static String generateResponseISOMessage(TransactionDetails td){
-        StringBuilder sb = new StringBuilder();
+        StringBuilder res = new StringBuilder();
+        res.append("0110");
+        String hexString = UtilService.generateBitmap(td);
+        res.append(hexString);
+        String data = generateCoreMessage(td);
+        res.append(data);
 
+
+        return res.toString();
+    }
+
+    private static String generateCoreMessage(TransactionDetails td){
+        StringBuilder sb = new StringBuilder();
+        if(td.getCardNumber() != null){
+            
+            sb.append(td.getCardNumber().toString().length());
+            sb.append(td.getCardNumber().toString());
+        }
+        if(td.getExpirationDate() != null){
+            sb.append(td.getExpirationDate().toString());
+        }
+        if(td.getAmount() != null){
+            sb.append(td.getAmount().toString());
+        }
+        if(td.getResponseCode() != null){
+            sb.append(td.getResponseCode().toString());
+        }
+        if(td.getCardHolderName() != null){
+            sb.append(td.getCardHolderName().toString().length());
+            sb.append(td.getCardHolderName().toString());
+        }
+        if(td.getZipCode() != null){
+            sb.append(td.getZipCode().toString());
+        }
 
         return sb.toString();
     }
+
+   
 }

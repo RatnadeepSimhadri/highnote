@@ -31,7 +31,25 @@ public class ExpiryDate implements ISOMessageDataElement {
     }
 
     public String toString(){
-        return (expiryMonth.toString() + expiryYear.toString());
+        StringBuilder sb = new StringBuilder();
+            Integer month = expiryMonth;
+            Integer year = expiryYear % 2000;
+            sb.append(month);
+            sb.append(year);
+        return sb.toString();
     }
     
+    /**
+     * @return the expiryMonth
+     */
+    public Integer getExpiryMonth() {
+        return expiryMonth;
+    }
+
+    /**
+     * @return the expiryYear
+     */
+    public Integer getExpiryYear() {
+        return expiryYear;
+    }
 }

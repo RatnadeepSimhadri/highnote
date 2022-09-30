@@ -1,5 +1,6 @@
 package com.highnote.models;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class TransactionDetails {
@@ -170,7 +171,38 @@ public class TransactionDetails {
      * Validates the Transaction based on the Transaction Details captured
      */
     public void validateTransaction(){
+        ResponseCode tResponse = null;
+        ZipCode tZipCode = (ZipCode) this.zipCode;
+        TransactionAmount tAmount = (TransactionAmount) this.amount;
+        ExpiryDate tDate = (ExpiryDate) this.expirationDate;
+        LocalDate today = LocalDate.now();
+        if(this.cardNumber == null || this.expirationDate == null || this.amount == null){
+            tResponse = new ResponseCode("ER");
+            this.setResponseCode(tResponse);
+            return;
+        } 
 
+        tResponse = new ResponseCode("OK");
+        if(tZipCode == null){
+            if(tAmount.getAmount() >= 10000){
+                tResponse.setResponseCode("DE");
+            } 
+        } else {
+            if(tAmount.getAmount() >= 20000){
+                tResponse.setResponseCode("DE");
+            }
+        }
+
+        int currentMonth = today.getMonthValue();
+        int currentYear = today.getYear();
+
+        if(tDate.getExpiryYear() < currentYear){
+            tResponse.setResponseCode("DE");
+        } else if (tDate.getExpiryYear() == currentYear && tDate.getExpiryMonth() < currentMonth){
+            tResponse.setResponseCode("DE");
+        }
+
+        this.responseCode = tResponse;
     }
     
 }

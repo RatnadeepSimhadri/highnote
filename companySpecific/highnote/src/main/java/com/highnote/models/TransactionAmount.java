@@ -1,5 +1,6 @@
 package com.highnote.models;
-
+import java.util.*; 
+import org.apache.commons.lang3.StringUtils;
 public class TransactionAmount implements ISOMessageDataElement {
     public static Integer DATALENGTH = 10;
     
@@ -28,7 +29,9 @@ public class TransactionAmount implements ISOMessageDataElement {
     }
 
     public String toString(){
-        return amount.toString();
+            int amountInCents = (int)Math.round(amount);
+            String amountCentsString = String.valueOf(amountInCents);
+            return StringUtils.leftPad(amountCentsString, DATALENGTH, "0");
     }
     
 }
