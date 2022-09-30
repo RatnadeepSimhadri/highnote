@@ -1,2 +1,3 @@
-target/*
-!target/site/*
+target/classes/*
+target/maven-status/*
+target/test-classes/*

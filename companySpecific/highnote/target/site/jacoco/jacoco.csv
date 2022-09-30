@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+highnote,com.highnote.service,UtilService,3,101,3,11,1,25,4,8,1,4
+highnote,com.highnote.service,ParserService,3,187,1,15,1,38,2,10,1,3
+highnote,com.highnote.parsers,ExpiryDateParser,0,23,0,0,0,3,0,2,0,2
+highnote,com.highnote.parsers,TransactionAmountParser,0,16,0,0,0,3,0,2,0,2
+highnote,com.highnote.parsers,CardNumberParser,0,32,0,0,0,6,0,2,0,2
+highnote,com.highnote.parsers,CardNameParser,0,31,0,0,0,4,0,2,0,2
+highnote,com.highnote.parsers,ZipCodeParser,0,16,0,0,0,3,0,2,0,2
+highnote,com.highnote.models,Accounts,0,40,0,0,0,13,0,6,0,6
+highnote,com.highnote.models,ZipCode,7,18,0,0,3,6,2,4,2,4
+highnote,com.highnote.models,TransactionAmount,4,32,0,0,2,9,1,5,1,5
+highnote,com.highnote.models,CardNumber,0,30,0,0,0,11,0,7,0,7
+highnote,com.highnote.models,ResponseCode,6,17,0,0,2,7,2,4,2,4
+highnote,com.highnote.models,ExpiryDate,0,67,0,0,0,19,0,8,0,8
+highnote,com.highnote.models,TransactionDetails,25,365,13,41,4,101,12,34,0,19
+highnote,com.highnote.models,CardHolderName,3,25,0,0,1,8,1,5,1,5
+highnote,com.highnote,Highnote,0,64,0,2,0,16,0,4,0,3

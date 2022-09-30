@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransactionDetails.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">highnote</a> &gt; <a href="index.source.html" class="el_package">com.highnote.models</a> &gt; <span class="el_source">TransactionDetails.java</span></div><h1>TransactionDetails.java</h1><pre class="source lang-java linenums">package com.highnote.models;
+
+import java.time.LocalDate;
+import java.util.*;
+
+public class TransactionDetails {
+    private String originalMessage;
+    private ISOMessageDataElement cardNumber;
+    private ISOMessageDataElement expirationDate;
+    private ISOMessageDataElement amount;
+    private ISOMessageDataElement responseCode;
+    private ISOMessageDataElement cardHolderName;
+    private ISOMessageDataElement zipCode;
+
+
+<span class="fc" id="L16">    public TransactionDetails(String ISOMessage){</span>
+<span class="fc" id="L17">        this.originalMessage = ISOMessage;</span>
+<span class="fc" id="L18">    }</span>
+    /**
+     * @param originalMessage the originalMessage to set
+     */
+    public void setOriginalMessage(String originalMessage) {
+<span class="fc" id="L23">        this.originalMessage = originalMessage;</span>
+<span class="fc" id="L24">    }</span>
+
+    /**
+     * @return the originalMessage
+     */
+    public String getOriginalMessage() {
+<span class="fc" id="L30">        return originalMessage;</span>
+    }
+    /**
+     * @return the amount
+     */
+    public ISOMessageDataElement getAmount() {
+<span class="fc" id="L36">        return amount;</span>
+    }
+    /**
+     * @param amount the amount to set
+     */
+    private void setAmount(ISOMessageDataElement amount) {
+<span class="fc" id="L42">        this.amount = amount;</span>
+<span class="fc" id="L43">    }</span>
+    /**
+     * @return the cardHolderName
+     */
+    public ISOMessageDataElement getCardHolderName() {
+<span class="fc" id="L48">        return cardHolderName;</span>
+    }
+    /**
+     * @param cardHolderName the cardHolderName to set
+     */
+    private void setCardHolderName(ISOMessageDataElement cardHolderName) {
+<span class="fc" id="L54">        this.cardHolderName = cardHolderName;</span>
+<span class="fc" id="L55">    }</span>
+    /**
+     * @return the cardNumber
+     */
+    public ISOMessageDataElement getCardNumber() {
+<span class="fc" id="L60">        return cardNumber;</span>
+    }
+    /**
+     * @param cardNumber the cardNumber to set
+     */
+    private void setCardNumber(ISOMessageDataElement cardNumber) {
+<span class="fc" id="L66">        this.cardNumber = cardNumber;</span>
+<span class="fc" id="L67">    }</span>
+    /**
+     * @return the expirationDate
+     */
+    public ISOMessageDataElement getExpirationDate() {
+<span class="fc" id="L72">        return expirationDate;</span>
+    }
+    /**
+     * @param expirationDate the expirationDate to set
+     */
+    private void setExpirationDate(ISOMessageDataElement expirationDate) {
+<span class="fc" id="L78">        this.expirationDate = expirationDate;</span>
+<span class="fc" id="L79">    }</span>
+    /**
+     * @return the zipCode
+     */
+    public ISOMessageDataElement getZipCode() {
+<span class="fc" id="L84">        return zipCode;</span>
+    }
+    /**
+     * @param zipCode the zipCode to set
+     */
+    private void setZipCode(ISOMessageDataElement zipCode) {
+<span class="fc" id="L90">        this.zipCode = zipCode;</span>
+<span class="fc" id="L91">    }</span>
+
+    public void populateData(ISOMessageDataElement element){
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if(element instanceof CardNumber){</span>
+<span class="fc" id="L95">            setCardNumber(element);</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        } else if ( element instanceof ExpiryDate){</span>
+<span class="fc" id="L97">            setExpirationDate(element);</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        } else if (element instanceof TransactionAmount){</span>
+<span class="fc" id="L99">            setAmount(element);</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        } else if (element instanceof CardHolderName){</span>
+<span class="fc" id="L101">            setCardHolderName(element);</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">        } else if (element instanceof ZipCode){</span>
+<span class="fc" id="L103">            setZipCode(element);</span>
+        }
+<span class="fc" id="L105">    }</span>
+
+    /**
+     * @param responseCode the responseCode to set
+     */
+    public void setResponseCode(ISOMessageDataElement responseCode) {
+<span class="fc" id="L111">        this.responseCode = responseCode;</span>
+<span class="fc" id="L112">    }</span>
+
+    /**
+     * @return the responseCode
+     */
+    public ISOMessageDataElement getResponseCode() {
+<span class="fc" id="L118">        return responseCode;</span>
+    }
+   
+    public String toString(){
+<span class="fc" id="L122">        StringBuilder sb = new StringBuilder();</span>
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">        if(cardNumber != null){</span>
+<span class="fc" id="L124">            sb.append(cardNumber.toString() + &quot; &quot;);</span>
+        }
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">        if(expirationDate != null){</span>
+<span class="fc" id="L127">            sb.append(expirationDate.toString() + &quot; &quot;);</span>
+        }
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">        if(amount != null){</span>
+<span class="fc" id="L130">            sb.append(amount.toString() + &quot; &quot;);</span>
+        }
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">        if(responseCode != null){</span>
+<span class="nc" id="L133">            sb.append(responseCode.toString() + &quot; &quot;);</span>
+        }
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        if(cardHolderName != null){</span>
+<span class="fc" id="L136">            sb.append(cardHolderName.toString() + &quot; &quot;);</span>
+        }
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        if(zipCode != null){</span>
+<span class="fc" id="L139">            sb.append(zipCode.toString() + &quot; &quot;);</span>
+        }
+
+<span class="fc" id="L142">        return sb.toString();</span>
+    }
+
+    public char[] generateResponseBitmap(){
+<span class="fc" id="L146">        char[] bitmap = new char[8];</span>
+<span class="fc" id="L147">        Arrays.fill(bitmap,'0');</span>
+<span class="pc bpc" id="L148" title="1 of 2 branches missed.">        if(cardNumber != null){</span>
+<span class="fc" id="L149">            bitmap[0] = '1';</span>
+        }
+<span class="pc bpc" id="L151" title="1 of 2 branches missed.">        if(expirationDate != null){</span>
+<span class="fc" id="L152">            bitmap[1] = '1';</span>
+        }
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">        if(amount != null){</span>
+<span class="fc" id="L155">            bitmap[2] = '1';</span>
+        }
+<span class="pc bpc" id="L157" title="1 of 2 branches missed.">        if(responseCode != null){</span>
+<span class="fc" id="L158">            bitmap[3] = '1';</span>
+        }
+<span class="fc bfc" id="L160" title="All 2 branches covered.">        if(cardHolderName != null){</span>
+<span class="fc" id="L161">            bitmap[4] = '1';</span>
+        }
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        if(zipCode != null){</span>
+<span class="fc" id="L164">            bitmap[5] = '1';</span>
+        }
+
+<span class="fc" id="L167">        return bitmap;</span>
+    }
+
+    /**
+     * Validates the Transaction based on the Transaction Details captured
+     */
+    public void validateTransaction(){
+<span class="fc" id="L174">        ResponseCode tResponse = null;</span>
+<span class="fc" id="L175">        ZipCode tZipCode = (ZipCode) this.zipCode;</span>
+<span class="fc" id="L176">        TransactionAmount tAmount = (TransactionAmount) this.amount;</span>
+<span class="fc" id="L177">        ExpiryDate tDate = (ExpiryDate) this.expirationDate;</span>
+<span class="fc" id="L178">        LocalDate today = LocalDate.now();</span>
+<span class="fc" id="L179">        CardNumber card = (CardNumber) this.cardNumber;</span>
+<span class="pc bpc" id="L180" title="1 of 6 branches missed.">        if(this.cardNumber == null || this.expirationDate == null || this.amount == null){</span>
+<span class="fc" id="L181">            tResponse = new ResponseCode(&quot;ER&quot;);</span>
+<span class="fc" id="L182">            this.setResponseCode(tResponse);</span>
+<span class="fc" id="L183">            return;</span>
+        } 
+
+<span class="fc" id="L186">        tResponse = new ResponseCode(&quot;OK&quot;);</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">        if(tZipCode == null){</span>
+<span class="fc bfc" id="L188" title="All 2 branches covered.">            if(tAmount.getAmount() &gt;= 10000){</span>
+<span class="fc" id="L189">                tResponse.setResponseCode(&quot;DE&quot;);</span>
+<span class="fc" id="L190">                this.setResponseCode(tResponse);</span>
+<span class="fc" id="L191">                return;</span>
+            } 
+        } else {
+<span class="fc bfc" id="L194" title="All 2 branches covered.">            if(tAmount.getAmount() &gt;= 20000){</span>
+<span class="fc" id="L195">                tResponse.setResponseCode(&quot;DE&quot;);</span>
+<span class="fc" id="L196">                this.setResponseCode(tResponse);</span>
+<span class="fc" id="L197">                return;</span>
+            }
+        }
+
+<span class="fc" id="L201">        int currentMonth = today.getMonthValue();</span>
+<span class="fc" id="L202">        int currentYear = today.getYear();</span>
+
+<span class="fc bfc" id="L204" title="All 2 branches covered.">        if(tDate.getExpiryYear() &lt; currentYear){</span>
+<span class="fc" id="L205">            tResponse.setResponseCode(&quot;DE&quot;);</span>
+<span class="fc" id="L206">            this.setResponseCode(tResponse);</span>
+<span class="fc" id="L207">            return;</span>
+<span class="pc bpc" id="L208" title="3 of 4 branches missed.">        } else if (tDate.getExpiryYear() == currentYear &amp;&amp; tDate.getExpiryMonth() &lt; currentMonth){</span>
+<span class="nc" id="L209">            tResponse.setResponseCode(&quot;DE&quot;);</span>
+<span class="nc" id="L210">            this.setResponseCode(tResponse);</span>
+<span class="nc" id="L211">            return;</span>
+        }
+
+<span class="fc" id="L214">        Accounts accounts = Accounts.getAccountsInstance();</span>
+<span class="fc" id="L215">        Long outstandingBalance = accounts.getBalance(card.getCardNumber());</span>
+<span class="fc bfc" id="L216" title="All 2 branches covered.">        if(tAmount.getAmount() &lt;= outstandingBalance){</span>
+<span class="fc" id="L217">            tResponse.setResponseCode(&quot;OK&quot;);</span>
+<span class="fc" id="L218">            this.setResponseCode(tResponse);</span>
+<span class="fc" id="L219">            outstandingBalance = outstandingBalance - tAmount.getAmount();</span>
+<span class="fc" id="L220">            accounts.updateBalance(card.getCardNumber(), outstandingBalance);</span>
+<span class="fc" id="L221">            return;</span>
+        } else {
+<span class="fc" id="L223">            tResponse.setResponseCode(&quot;DE&quot;);</span>
+<span class="fc" id="L224">            this.setResponseCode(tResponse);</span>
+<span class="fc" id="L225">            return;</span>
+        }
+
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
